@@ -1,0 +1,5 @@
+__pycache__
+*.sw[o,p] 
+*.log
+*.pyc
+.python-version
