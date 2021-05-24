@@ -1,5 +1,8 @@
-__pycache__
 *.sw[o,p] 
 *.log
+
+__pycache__
 *.pyc
 .python-version
+
+node_modules

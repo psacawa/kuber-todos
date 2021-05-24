@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = ")rr3-0v^hhf^&t9m55!#_tuufu_440jp*hd8o(9gew0ns9fim2"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.49.2']
 
 
 # Application definition
@@ -38,10 +39,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "django_extensions",
     #  local apps
     "todos",
 ]
+
+#  if DEBUG:
+#      INSTALLED_APPS += ["django_extensions",]
 
 
 MIDDLEWARE = [
