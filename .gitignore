@@ -1,8 +1,10 @@
 *.sw[o,p] 
 *.log
+.envrc
 
 __pycache__
 *.pyc
 .python-version
+*.sqlite3
 
 node_modules

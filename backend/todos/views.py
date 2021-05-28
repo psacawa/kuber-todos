@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http.response import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.request import Request
 from rest_framework.viewsets import ModelViewSet
@@ -11,7 +12,7 @@ from .models import Todo
 
 
 class TodoSerializer(ModelSerializer):
-    class Meta: 
+    class Meta:
         model = Todo
         fields = "__all__"
 
@@ -23,10 +24,15 @@ def stub(request: Request):
     serializer = TodoSerializer(todos, many=True)
     return Response(serializer.data)
 
-class TodoViewSet(ModelViewSet): 
+
+class TodoViewSet(ModelViewSet):
 
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
-    class Meta: 
+    class Meta:
         model = Todo
+
+
+def echo(request):
+    return HttpResponse("hello world")
