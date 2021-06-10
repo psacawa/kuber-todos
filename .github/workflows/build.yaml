@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        image: [todos-frontend-image, todos-backend-image]
+        context: [frontend, backend]
     steps:
       - uses: actions/checkout@v1
-      - run: docker build --tag ${{ matrix.image }} backend
+      - run: docker build --tag todos-${{ matrix.context }}-image backend
       - name: Login to ECR
         uses: docker/login-action@v1
         with:
@@ -22,5 +22,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
+          context: ${{ matrix.context }}
           push: true
-          tags: ${{ matrix.image }}
+          tags: todos-${{ matrix.context }}-image
