@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: docker build --tag todos-backend-image -f backend/Dockerfile .
+      - run: docker build --tag todos-backend-image backend
       - name: Push backend to ECR
         id: build-backend
         uses: jwalton/gh-ecr-push@v1
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: docker build --tag todos-frontend-image -f frontend/Dockerfile .
+      - run: docker build --tag todos-frontend-image frontend
       - name: Push frontend to ECR
         id: build-frontend
         uses: jwalton/gh-ecr-push@v1
