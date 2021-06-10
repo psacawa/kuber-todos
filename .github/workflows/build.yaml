@@ -8,14 +8,13 @@ jobs:
   build-containers:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
       matrix:
         image: [frontend, backend]
     steps:
       - uses: actions/checkout@v1
       - run: docker build --tag todos-${{ matrix.image }}-image backend
       - name: Push ${{ matrix.image }} to ECR
-        id: build-${{ matrix.image }}
+        id: push-image-ecr
         uses: jwalton/gh-ecr-push@v1
         with:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
