@@ -4,5 +4,5 @@ workdir /app
 copy yarn.lock package.json ./
 run yarn install
 copy . .
-run yarn build
+# run yarn build
 cmd node
