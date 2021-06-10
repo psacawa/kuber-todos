@@ -1,7 +1,7 @@
-# todos-backend
+# todos-backend-image
 from python:3 
 workdir /app
-copy requirements.txt .
+copy requirements.txt ./
 run pip install -r requirements.txt
 copy . . 
 expose 8000
