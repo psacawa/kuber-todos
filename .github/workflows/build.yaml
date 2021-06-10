@@ -13,12 +13,12 @@ jobs:
         image: [frontend, backend]
     steps:
       - uses: actions/checkout@v1
-      - run: docker build --tag todos-${{ matix.image }}-image backend
-      - name: Push ${{ matix.image }} to ECR
-        id: build-${{ matix.image }}
+      - run: docker build --tag todos-${{ matrix.image }}-image backend
+      - name: Push ${{ matrix.image }} to ECR
+        id: build-${{ matrix.image }}
         uses: jwalton/gh-ecr-push@v1
         with:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: us-east-2
-          image: todos-${{ matix.image }}-image
+          image: todos-${{ matrix.image }}-image
