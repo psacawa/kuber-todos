@@ -4,31 +4,21 @@ on:
       - "master"
   workflow_dispatch:
 
-
 jobs:
-  build-backend:
+  build-containers:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        image: [frontend, backend]
     steps:
       - uses: actions/checkout@v1
-      - run: docker build --tag todos-backend-image backend
-      - name: Push backend to ECR
-        id: build-backend
+      - run: docker build --tag todos-${{ matix.image }}-image backend
+      - name: Push ${{ matix.image }} to ECR
+        id: build-${{ matix.image }}
         uses: jwalton/gh-ecr-push@v1
         with:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: us-east-2
-          image: todos-backend-image
-  build-frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - run: docker build --tag todos-frontend-image frontend
-      - name: Push frontend to ECR
-        id: build-frontend
-        uses: jwalton/gh-ecr-push@v1
-        with:
-          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region: us-east-2
-          image: todos-frontend-image
+          image: todos-${{ matix.image }}-image
