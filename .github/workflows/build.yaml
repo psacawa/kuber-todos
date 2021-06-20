@@ -25,6 +25,6 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v2
         with:
-          context: ${{ matrix.context }}
+          context: ./${{ matrix.context }}
           push: true
           tags: 886185890074.dkr.ecr.us-east-2.amazonaws.com/todos-${{ matrix.context}}-image:latest
