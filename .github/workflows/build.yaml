@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: true
       matrix: 
         context: [frontend, backend]
     runs-on: ubuntu-latest
