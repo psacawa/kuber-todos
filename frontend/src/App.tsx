@@ -43,7 +43,6 @@ function App() {
                     <IconButton
                       onClick={(ev: React.MouseEvent<{}>) => {
                         deleteTodo.mutate({ id: todo.id });
-                        queryClient.invalidateQueries("todos");
                       }}
                     >
                       <Delete />
@@ -74,7 +73,6 @@ const TodoSubmitForm = () => {
       initialValues={{ text: "" }}
       validationSchema={validationSchema}
       onSubmit={async (values, bag) => {
-        console.log("submit");
         bag.setSubmitting(true);
         await createTodo.mutateAsync(values);
         queryClient.invalidateQueries("todos");

@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=file://home/psacawa/.kube/schema/v1.18.1-standalone-strict/deployment.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:

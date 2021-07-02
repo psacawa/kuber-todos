@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todos-frontend-deployment
+  labels:
+    app: todos
+    component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todos
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: todos
+        component: frontend
+    spec:
+      containers:
+        - name: todos-frontend-image
+          image: 886185890074.dkr.ecr.us-east-2.amazonaws.com/todos-frontend-image
+          env:
+          ports:
+            - name: http
+              containerPort: 80

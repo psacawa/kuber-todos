@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "react-query";
 import axios, { AxiosResponse } from "axios";
 import { Todo } from "./types";
+import { queryClient } from ".";
 
 const apiRoot = "/api";
 
@@ -12,11 +13,22 @@ export const useTodos = () =>
   );
 
 export const useCreateTodo = () =>
-  useMutation((values: { text: string }) =>
-    axios.post(`${apiRoot}/todos/`, values).then((response) => response.data)
+  useMutation(
+    (values: { text: string }) =>
+      axios.post(`${apiRoot}/todos/`, values).then((response) => response.data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("todos");
+      },
+    }
   );
 
 export const useDeleteTodo = () =>
-  useMutation((values: { id: number }) =>
-    axios.delete(`${apiRoot}/todos/${values.id}`)
+  useMutation(
+    (values: { id: number }) => axios.delete(`${apiRoot}/todos/${values.id}`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("todos");
+      },
+    }
   );

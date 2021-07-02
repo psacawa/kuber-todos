@@ -1,5 +1,4 @@
 # todos-backend-image
-
 from node:16 as builder
 workdir /app
 copy yarn.lock package.json ./

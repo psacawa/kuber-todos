@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todos-backend-deployment
+  labels:
+    app: todos
+    component: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todos
+      component: backend
+  template:
+    metadata:
+      labels:
+        app: todos
+        component: backend
+    spec:
+      containers:
+        - name: todos-backend-image
+          image: 886185890074.dkr.ecr.us-east-2.amazonaws.com/todos-backend-image
+          env:
+            - name: POSTGRES_HOST
+              value: postgres-service
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-password
+                  key: password
+          ports:
+            - name: http
+              containerPort: 8000
