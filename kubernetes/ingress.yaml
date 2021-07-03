@@ -10,6 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:886185890074:certificate/5b004916-6600-46bd-8f8f-40fd99705600
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     kubernetes.io/ingress.class: alb
+    external-dns.alpha.kubernetes.io/hostname: todos.lektprojekt.com
     
 spec:
   rules:
