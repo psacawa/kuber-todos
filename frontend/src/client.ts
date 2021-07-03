@@ -17,8 +17,8 @@ export const useCreateTodo = () =>
     (values: { text: string }) =>
       axios.post(`${apiRoot}/todos/`, values).then((response) => response.data),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries("todos");
+      onSuccess: async () => {
+        await queryClient.refetchQueries("todos");
       },
     }
   );
@@ -27,8 +27,8 @@ export const useDeleteTodo = () =>
   useMutation(
     (values: { id: number }) => axios.delete(`${apiRoot}/todos/${values.id}`),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries("todos");
+      onSuccess: async () => {
+        await queryClient.refetchQueries("todos");
       },
     }
   );

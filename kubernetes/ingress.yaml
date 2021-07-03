@@ -14,7 +14,8 @@ metadata:
     
 spec:
   rules:
-    - http:
+    - host: todos.lektprojekt.com
+      http:
         paths:
           - path: /api
             pathType: Prefix
